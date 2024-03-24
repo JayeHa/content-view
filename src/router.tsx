@@ -5,6 +5,23 @@ import {
 } from "react-router-dom";
 import { App } from "./App";
 
+/**
+ * `PageComponent` 타입은 React 페이지 컴포넌트에 사용됩니다.
+ *
+ * - `pageName`: 페이지의 이름을 정의합니다. 이 이름은 헤더 네비게이션에 페이지를 추가할 때 사용됩니다.
+ *
+ * @example
+ * 아래는 `pageName`을 사용하는 예시입니다.
+ *
+ * export default function ExamplePage() {
+ *   return <div>Example Page</div>;
+ * }
+ * ExamplePage.pageName = "예시";
+ */
+type PageComponent = React.ComponentType & {
+  pageName?: string;
+};
+
 interface RouteCommon {
   loader?: LoaderFunction;
   action?: ActionFunction;
@@ -13,12 +30,14 @@ interface RouteCommon {
 
 interface IRoute extends RouteCommon {
   path: string;
-  Element: React.ComponentType<unknown>;
+  Element: PageComponent;
+  pageName?: string;
 }
 
 interface Pages {
   [key: string]: {
-    default: React.ComponentType<unknown>;
+    default: PageComponent;
+    pageName?: string;
   } & RouteCommon;
 }
 
@@ -39,6 +58,7 @@ const getRoutes = () => {
     routes.push({
       path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
       Element: pages[path].default,
+      pageName: pages[path].default.pageName,
       loader: pages[path]?.loader as LoaderFunction | undefined,
       action: pages[path]?.action as ActionFunction | undefined,
       ErrorBoundary: pages[path]?.ErrorBoundary,
