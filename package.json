@@ -7,8 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "msw:init": "pnpx msw init ./public",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint --report-unused-disable-directives --cache --fix --max-warnings=0",
+    "pretty": "prettier --cache --write",
+    "preview": "vite preview",
+    "prepare": "husky"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.28.6",
@@ -30,12 +32,20 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "msw": "^2.2.10",
     "postcss": "^8.4.38",
     "prettier": "3.2.5",
     "tailwindcss": "^3.4.1",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "pnpm pretty",
+      "pnpm lint"
+    ]
   },
   "msw": {
     "workerDirectory": [
