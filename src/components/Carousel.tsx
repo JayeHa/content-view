@@ -11,7 +11,7 @@ export const Carousel = ({ items }: Props) => {
   const settings = useMemo<Settings>(
     () => ({
       centerMode: true,
-      centerPadding: "10%",
+      centerPadding: "25%",
       slidesToShow: 1,
       slidesToScroll: 1,
       infinite: true,
@@ -23,6 +23,8 @@ export const Carousel = ({ items }: Props) => {
       dots: true,
       dotsClass: "slick-dots carousel",
       arrows: false,
+
+      responsive: [{ breakpoint: 500, settings: { centerPadding: "15%" } }],
     }),
     []
   );

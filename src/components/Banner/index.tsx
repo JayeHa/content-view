@@ -36,7 +36,7 @@ export const Banner = ({
           <StatusBadge {...status} />
         </div>
         <div
-          className="h-36 bg-gray-300 flex-center"
+          className="h-36 bg-gray-300 flex-center sm:h-52"
           style={{ background: bgColor }}
         >
           <Image src={image} style={{ objectFit: "cover" }} />
