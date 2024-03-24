@@ -12,6 +12,7 @@ export type BannerType = {
   category: string;
   title: string;
   image: string;
+  bgColor?: string;
   link?: {
     url: string;
     name?: string;
@@ -24,7 +25,7 @@ type Props = {
 };
 
 export const Banner = ({
-  data: { category, title, image, link, duration },
+  data: { category, title, image, link, duration, bgColor },
 }: Props) => {
   const status = getStatusOfDurationWithDday(duration);
 
@@ -34,8 +35,12 @@ export const Banner = ({
         <div className="absolute z-10 top-2 right-2">
           <StatusBadge {...status} />
         </div>
-
-        <Image src={image} style={{ objectFit: "fill", aspectRatio: 5 }} />
+        <div
+          className="h-36 bg-gray-300 flex-center"
+          style={{ background: bgColor }}
+        >
+          <Image src={image} style={{ objectFit: "cover", aspectRatio: 6 }} />
+        </div>
       </header>
 
       <div className="px-2 pt-3 pb-5">
