@@ -81,3 +81,12 @@ export const router = createBrowserRouter([
     })),
   },
 ]);
+
+const desiredOrder = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
+
+export const filteredPageRoutes = pageRoutes
+  .filter(({ pageName }) => pageName != null)
+  .sort(
+    (a, b) =>
+      desiredOrder.indexOf(a.pageName!) - desiredOrder.indexOf(b.pageName!)
+  );

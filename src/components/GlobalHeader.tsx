@@ -1,16 +1,8 @@
-import { pageRoutes } from "@/router";
+import { filteredPageRoutes } from "@/router";
 import { Link, useLocation } from "react-router-dom";
-
-const desiredOrder = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
 
 export const GlobalHeader = () => {
   const { pathname: currentPath } = useLocation();
-  const filteredPageRoutes = pageRoutes
-    .filter(({ pageName }) => pageName != null)
-    .sort(
-      (a, b) =>
-        desiredOrder.indexOf(a.pageName!) - desiredOrder.indexOf(b.pageName!)
-    );
 
   return (
     <header className="fixed inset-x-0 top-0 max-w-GLOBAL_MAX_WIDTH mx-auto z-GNB bg-background">

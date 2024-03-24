@@ -1,5 +1,11 @@
+import { ChartList } from "@components/ChartList";
+
 export default function StorePage() {
-  return <div>Store Page</div>;
+  return (
+    <div>
+      <ChartList />
+    </div>
+  );
 }
 
 StorePage.pageName = "스토어";
