@@ -1,4 +1,4 @@
-import { ChartList } from "@components/ChartList";
+import { ChartList } from "@/pages/chart/ChartList";
 
 export default function StorePage() {
   return (

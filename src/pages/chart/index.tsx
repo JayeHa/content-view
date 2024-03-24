@@ -1,7 +1,7 @@
 import { Banner, BannerType } from "@components/Banner";
 import { Carousel } from "@components/Carousel";
 import { Section } from "@components/Section";
-import { ChartList } from "../../components/ChartList";
+import { ChartList } from "./ChartList";
 
 // TODO: 데이터 이동
 const BANNER_LIST: BannerType[] = [
