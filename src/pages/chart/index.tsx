@@ -80,7 +80,7 @@ export default function ChartPage() {
           {Array.from({ length: 10 }, (_, i) => (
             <li key={i}>
               <MusicCard
-                rank={{ current: i + 5, prev: Math.random() * 10 + 3 }}
+                rank={{ current: i + 100, prev: Math.random() * 10 + 3 }}
               />
             </li>
           ))}

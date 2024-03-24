@@ -1,5 +1,5 @@
 // global
-const GLOBAL_MAX_WIDTH = 768;
+const GLOBAL_MAX_WIDTH = 630;
 const GLOBAL_PADDING_X = 8;
 
 // header
