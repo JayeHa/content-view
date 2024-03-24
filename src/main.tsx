@@ -2,7 +2,7 @@ import "@styles/global.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
-import { router } from "./router";
+import { RouterClass } from "./router";
 
 // async function enableMocking() {
 //   const { worker } = await import("./mocks");
@@ -17,8 +17,12 @@ import { router } from "./router";
 //   );
 // });
 
+const routerclass = new RouterClass();
+
+export const pageRoutes = routerclass.pageRoutes;
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={routerclass.router} />
   </React.StrictMode>
 );

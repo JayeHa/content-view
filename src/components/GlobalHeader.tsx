@@ -1,4 +1,4 @@
-import { pageRoutes } from "@/router";
+import { pageRoutes } from "@/main";
 import { Link, useLocation } from "react-router-dom";
 
 const desiredOrder = ["차트", "Whook", "이벤트", "뉴스", "스토어", "충전소"];
