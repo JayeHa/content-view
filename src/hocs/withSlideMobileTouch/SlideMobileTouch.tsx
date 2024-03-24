@@ -1,23 +1,23 @@
 import { GLOBAL_MAX_WIDTH } from "@styles/constants/spacing";
-import React, {
+import {
   PropsWithChildren,
   TouchEventHandler,
   useCallback,
   useState,
 } from "react";
 
-type SwipeProps = PropsWithChildren & {
+export type SlideMobileTouchProps = PropsWithChildren & {
   /** 발동 기준이 되는 최소 드래그 길이(퍼센트 단위) */
   thresholdPercentage: number;
 
   onSwipe: (direction: "left" | "right") => void;
 };
 
-export const SlideMobileTouch: React.FC<SwipeProps> = ({
+export const SlideMobileTouch = ({
   onSwipe,
   thresholdPercentage,
   children,
-}) => {
+}: SlideMobileTouchProps) => {
   const [isSwiping, setIsSwiping] = useState(false);
   const [startX, setStartX] = useState<number | null>(null);
   const [currentX, setCurrentX] = useState<number>(0);
@@ -35,6 +35,7 @@ export const SlideMobileTouch: React.FC<SwipeProps> = ({
 
         if (isSwiping && ratio > thresholdPercentage) {
           const direction = endX > startX ? "right" : "left"; // 스와이프 방향 결정
+
           onSwipe(direction);
         }
       }
