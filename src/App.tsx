@@ -1,12 +1,15 @@
-import { RouterProvider } from "react-router-dom";
-
 import { MainLayout } from "@layouts/MainLayout";
-import { router } from "./router";
+import "@styles/global.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+const queryClient = new QueryClient();
 
 export const App = () => {
   return (
-    <MainLayout>
-      <RouterProvider router={router} />
-    </MainLayout>
+    <QueryClientProvider client={queryClient}>
+      <MainLayout />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 };
