@@ -32,7 +32,7 @@ export const Banner = ({
   const content = (
     <>
       <header>
-        <div className="absolute z-10 top-2 right-2">
+        <div className="absolute z-CAROUSEL top-2 right-2">
           <StatusBadge {...status} />
         </div>
         <div

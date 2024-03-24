@@ -13,7 +13,7 @@ export const GlobalHeader = () => {
     );
 
   return (
-    <header className="fixed inset-x-0 top-0 max-w-GLOBAL_MAX_WIDTH mx-auto">
+    <header className="fixed inset-x-0 top-0 max-w-GLOBAL_MAX_WIDTH mx-auto z-GNB bg-background">
       <div className="bg-white h-GNB_HEIGHT shadow-sm">
         <div className="flex-center h-full">
           <Link to="/">
