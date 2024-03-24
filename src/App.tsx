@@ -1,13 +1,17 @@
-import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./router";
 
 export const App = () => {
-  useEffect(() => {
-    fetch("/test")
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-  }, []);
+  const { data } = useQuery({
+    queryKey: ["test"],
+    queryFn: () =>
+      fetch("/test")
+        .then((response) => response.json())
+        .then((data) => data),
+  });
+
+  console.log(data);
 
   return <RouterProvider router={router} />;
 };
