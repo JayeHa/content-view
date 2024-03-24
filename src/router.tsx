@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import {
   ActionFunction,
   LoaderFunction,
@@ -25,9 +26,9 @@ import WhookPage from "./pages/whook";
  * }
  * ExamplePage.pageName = "예시";
  */
-type PageComponent = React.ComponentType & {
-  pageName?: string;
-};
+// type PageComponent = React.ComponentType & {
+//   pageName?: string;
+// };
 
 interface RouteCommon {
   loader?: LoaderFunction;
@@ -37,7 +38,7 @@ interface RouteCommon {
 
 interface IRoute extends RouteCommon {
   path: string;
-  Element: PageComponent;
+  element: ReactNode;
   pageName?: string;
 }
 
@@ -45,36 +46,32 @@ export const pageRoutes: IRoute[] = [
   {
     path: "/charge",
     pageName: "충전소",
-    Element: ChargePage,
+    element: <ChargePage />,
   },
   {
     path: "/chart",
     pageName: "차트",
-    Element: ChartPage,
+    element: <ChartPage />,
   },
   {
     path: "/event",
     pageName: "이벤트",
-    Element: EventPage,
-  },
-  {
-    path: "/",
-    Element: HomePage,
+    element: <EventPage />,
   },
   {
     path: "/news",
     pageName: "뉴스",
-    Element: NewsPage,
+    element: <NewsPage />,
   },
   {
     path: "/store",
     pageName: "스토어",
-    Element: StorePage,
+    element: <StorePage />,
   },
   {
     path: "/whook",
     pageName: "Whook",
-    Element: WhookPage,
+    element: <WhookPage />,
   },
 ];
 
@@ -82,10 +79,12 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: pageRoutes.map(({ Element, ErrorBoundary, ...rest }) => ({
-      ...rest,
-      element: <Element />,
-      ...(ErrorBoundary && { errorElement: <ErrorBoundary /> }),
-    })),
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      ...pageRoutes,
+    ],
   },
 ]);
