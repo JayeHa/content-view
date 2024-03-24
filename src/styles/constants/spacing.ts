@@ -2,17 +2,21 @@
 const GLOBAL_MAX_WIDTH = 768;
 const GLOBAL_PADDING_X = 8;
 
-// global header
-const GNB_HEIGHT = 80;
+// header
+const GNB_HEIGHT = 50;
+const LNB_HEIGHT = 60;
+const HEADER_HEIGHT = GNB_HEIGHT + LNB_HEIGHT;
 
 // main
-const MAIN_MARGIN_TOP = GNB_HEIGHT + 8;
+const MAIN_MARGIN_TOP = HEADER_HEIGHT + 10;
 
 export default {
   GLOBAL_MAX_WIDTH,
   GLOBAL_PADDING_X,
 
   GNB_HEIGHT,
+  LNB_HEIGHT,
+  HEADER_HEIGHT,
 
   MAIN_MARGIN_TOP,
 };
