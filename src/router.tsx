@@ -41,34 +41,28 @@ interface Pages {
   } & RouteCommon;
 }
 
-const getRoutes = () => {
-  const routes: IRoute[] = [];
-  const pages: Pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
+export const pageRoutes: IRoute[] = [];
+const pages: Pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
 
-  for (const path of Object.keys(pages)) {
-    const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
-    if (!fileName) {
-      continue;
-    }
-
-    const normalizedPathName = fileName.includes("$")
-      ? fileName.replace("$", ":")
-      : fileName.replace(/\/index/, "");
-
-    routes.push({
-      path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
-      Element: pages[path].default,
-      pageName: pages[path].default.pageName,
-      loader: pages[path]?.loader as LoaderFunction | undefined,
-      action: pages[path]?.action as ActionFunction | undefined,
-      ErrorBoundary: pages[path]?.ErrorBoundary,
-    });
+for (const path of Object.keys(pages)) {
+  const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
+  if (!fileName) {
+    continue;
   }
 
-  return routes;
-};
+  const normalizedPathName = fileName.includes("$")
+    ? fileName.replace("$", ":")
+    : fileName.replace(/\/index/, "");
 
-export const pageRoutes = getRoutes();
+  pageRoutes.push({
+    path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
+    Element: pages[path].default,
+    pageName: pages[path].default.pageName,
+    loader: pages[path]?.loader as LoaderFunction | undefined,
+    action: pages[path]?.action as ActionFunction | undefined,
+    ErrorBoundary: pages[path]?.ErrorBoundary,
+  });
+}
 
 export const router = createBrowserRouter([
   {
