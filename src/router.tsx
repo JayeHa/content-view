@@ -4,6 +4,13 @@ import {
   createBrowserRouter,
 } from "react-router-dom";
 import { App } from "./App";
+import HomePage from "./pages";
+import ChargePage from "./pages/charge";
+import ChartPage from "./pages/chart";
+import EventPage from "./pages/event";
+import NewsPage from "./pages/news";
+import StorePage from "./pages/store";
+import WhookPage from "./pages/whook";
 
 /**
  * `PageComponent` 타입은 React 페이지 컴포넌트에 사용됩니다.
@@ -34,35 +41,42 @@ interface IRoute extends RouteCommon {
   pageName?: string;
 }
 
-interface Pages {
-  [key: string]: {
-    default: PageComponent;
-    pageName?: string;
-  } & RouteCommon;
-}
-
-export const pageRoutes: IRoute[] = [];
-const pages: Pages = import.meta.glob("./pages/**/*.tsx", { eager: true });
-
-for (const path of Object.keys(pages)) {
-  const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
-  if (!fileName) {
-    continue;
-  }
-
-  const normalizedPathName = fileName.includes("$")
-    ? fileName.replace("$", ":")
-    : fileName.replace(/\/index/, "");
-
-  pageRoutes.push({
-    path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
-    Element: pages[path].default,
-    pageName: pages[path].default.pageName,
-    loader: pages[path]?.loader as LoaderFunction | undefined,
-    action: pages[path]?.action as ActionFunction | undefined,
-    ErrorBoundary: pages[path]?.ErrorBoundary,
-  });
-}
+export const pageRoutes: IRoute[] = [
+  {
+    path: "/charge",
+    pageName: "충전소",
+    Element: ChargePage,
+  },
+  {
+    path: "/chart",
+    pageName: "차트",
+    Element: ChartPage,
+  },
+  {
+    path: "/event",
+    pageName: "이벤트",
+    Element: EventPage,
+  },
+  {
+    path: "/",
+    Element: HomePage,
+  },
+  {
+    path: "/news",
+    pageName: "뉴스",
+    Element: NewsPage,
+  },
+  {
+    path: "/store",
+    pageName: "스토어",
+    Element: StorePage,
+  },
+  {
+    path: "/whook",
+    pageName: "Whook",
+    Element: WhookPage,
+  },
+];
 
 export const router = createBrowserRouter([
   {
