@@ -15,7 +15,7 @@ export const MusicCard = ({ rank }: Props) => {
   return (
     <article className="flex">
       {/* 이미지 */}
-      <div className="size-16 overflow-hidden rounded shrink-0">
+      <div className="size-16 overflow-hidden rounded shrink-0 pointer-events-none">
         <Image src="/images/900523958_s150.jpg" />
       </div>
 
@@ -24,7 +24,7 @@ export const MusicCard = ({ rank }: Props) => {
         <div className="text-center w-12">
           <div className="text-2xl">
             <span className="sr-only">{rank.current}위</span>
-            <span area-hidden>{rank.current}</span>
+            <span area-hidden="">{rank.current}</span>
           </div>
           <div>{calcRankIcon(rank)}</div>
         </div>
