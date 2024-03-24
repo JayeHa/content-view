@@ -1,4 +1,5 @@
 import { Image } from "@components/Image";
+import { MusicCardSkeleton } from "./skeletons";
 import { calcRankIcon } from "./utils";
 
 export type Rank = {
@@ -40,3 +41,5 @@ export const MusicCard = ({ rank }: Props) => {
     </article>
   );
 };
+
+MusicCard.Skeleton = MusicCardSkeleton;

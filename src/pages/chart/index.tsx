@@ -76,17 +76,18 @@ export default function ChartPage() {
           <li>
             <MusicCard rank={{ current: 4, prev: 5 }} />
           </li>
-
-          {Array.from({ length: 10 }, (_, i) => (
-            <li key={i}>
-              <MusicCard
-                rank={{ current: i + 100, prev: Math.random() * 10 + 3 }}
-              />
-            </li>
-          ))}
+          <li>
+            <MusicCard rank={{ current: 999, prev: 5 }} />
+          </li>
         </ol>
 
-        {/* <div className="animate-pulse bg-neutral-300">more</div> */}
+        {/* 스켈레톤 */}
+        <div className="mt-2">
+          <span className="sr-only">로딩중</span>
+          <MusicCard.Skeleton />
+          <MusicCard.Skeleton />
+          <MusicCard.Skeleton />
+        </div>
       </Section>
     </>
   );

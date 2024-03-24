@@ -16,6 +16,10 @@
   .slick-dots.carousel {
     bottom: -10px;
   }
+
+  .skeleton-item {
+    @apply bg-neutral-200 rounded;
+  }
 }
 
 @layer utilities {
