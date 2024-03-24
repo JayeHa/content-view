@@ -1,3 +1,4 @@
+import { kstFormat } from "@/utils/date";
 import { Image } from "@components/Image";
 import { Link } from "react-router-dom";
 import { StatusBadge } from "./StatusBadge";
@@ -55,9 +56,10 @@ export const Banner = ({
             </span>
           )}
         </div>
-        {/* TODO: */}
+
         <div className="text-end text-xs mt-3 text-gray-500">
-          {duration.start} - {duration.end}(KST)
+          {kstFormat(new Date(duration.start), "yyyy.mm.dd HH:mm")} -{" "}
+          {kstFormat(new Date(duration.end), "yyyy.mm.dd HH:mm")} (KST)
         </div>
       </div>
     </>
