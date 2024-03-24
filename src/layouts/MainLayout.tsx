@@ -6,7 +6,7 @@ export const MainLayout = () => {
     <div className="min-h-screen flex-center ">
       <div className="w-full max-w-GLOBAL_MAX_WIDTH h-screen">
         <GlobalHeader />
-        <main className="mt-MAIN_MARGIN_TOP pt-4 bg-white">
+        <main className="mt-MAIN_MARGIN_TOP">
           <Outlet />
         </main>
       </div>
