@@ -39,7 +39,7 @@ export const Banner = ({
           className="h-36 bg-gray-300 flex-center"
           style={{ background: bgColor }}
         >
-          <Image src={image} style={{ objectFit: "cover", aspectRatio: 6 }} />
+          <Image src={image} style={{ objectFit: "cover" }} />
         </div>
       </header>
 
@@ -64,7 +64,7 @@ export const Banner = ({
   );
 
   return (
-    <article className="bg-white rounded-lg shadow-md relative">
+    <article className="bg-white rounded-lg shadow-md relative overflow-hidden">
       {link?.url ? <Link to={link.url}>{content}</Link> : content}
     </article>
   );

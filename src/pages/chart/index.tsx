@@ -1,4 +1,5 @@
 import { Banner, BannerType } from "@components/Banner";
+import { Carousel } from "@components/Carousel";
 import { Section } from "@components/Section";
 
 // TODO: 데이터 이동
@@ -47,9 +48,11 @@ export default function ChartPage() {
   return (
     <>
       <Section noPaddingX>
-        {BANNER_LIST.map((banner) => (
-          <Banner data={banner} />
-        ))}
+        <Carousel
+          items={BANNER_LIST.map((banner) => (
+            <Banner data={banner} />
+          ))}
+        />
       </Section>
       <Section>Chart Page</Section>
     </>

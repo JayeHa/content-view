@@ -12,6 +12,10 @@
   .main-margin {
     margin: theme(spacing.GNB_HEIGHT);
   }
+
+  .slick-dots.carousel {
+    bottom: -10px;
+  }
 }
 
 @layer utilities {
