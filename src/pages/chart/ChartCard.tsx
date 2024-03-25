@@ -1,14 +1,13 @@
-import { CHART, Rank } from "@/models/contents/chart";
+import { ChartContent } from "@/models/contents/chart";
 import { ContentCard } from "@components/ContentCard";
 import { calcRankIcon } from "./utils";
 
 type Props = {
-  rank: Rank;
+  chartContent: ChartContent;
 };
 
-// TODO: 임시 props
-export const ChartCard = ({ rank: _rank }: Props) => {
-  const { rank, ...content } = CHART.DEFAULT_DATA;
+export const ChartCard = ({ chartContent }: Props) => {
+  const { rank, ...content } = chartContent;
 
   return (
     <ContentCard content={content}>
@@ -18,7 +17,7 @@ export const ChartCard = ({ rank: _rank }: Props) => {
           <span className="sr-only">{rank.current}위</span>
           <span area-hidden="">{rank.current}</span>
         </div>
-        <div>{calcRankIcon(_rank)}</div>
+        <div>{calcRankIcon(rank)}</div>
       </div>
     </ContentCard>
   );

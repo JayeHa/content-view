@@ -13,6 +13,11 @@ export const applyDelay = async (page: number) => {
 export const getRandomNumber = (index = 0) =>
   Math.round(Math.random() * 100) + index;
 
+export const getRandomIndexAdjustment = (currentIndex: number) => {
+  const adjustment = Math.floor(Math.random() * 3) - 1; // -1, 0, 1
+  return Math.max(currentIndex + adjustment, 1);
+};
+
 /** */
 export const generateContents = (data: DefaultContentData): Content[] => {
   return Array.from({ length: 999 }, (_, id) => ({

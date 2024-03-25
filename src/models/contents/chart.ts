@@ -5,11 +5,13 @@ export type Rank = {
   prev?: number | null;
 };
 
-export type ChartContent = DefaultContentData & {
+export type DefaultChartContent = DefaultContentData & {
   rank: Rank;
 };
 
-const DEFAULT_DATA: ChartContent = {
+export type ChartContent = DefaultChartContent & { id: number };
+
+const DEFAULT_DATA: DefaultChartContent = {
   src: "/images/900523958_s150.jpg",
   title: "나는 아픈 건 딱 질색이니까",
   subtitle: "(여자)아이들",
