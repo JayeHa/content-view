@@ -1,0 +1,39 @@
+import { Content, DefaultContentData } from "@/models/contents";
+import { DefaultBodyType, StrictRequest } from "msw";
+
+export const delay = (ms: number) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
+
+export const applyDelay = async (page: number) => {
+  const FIRST_DELAY = 2000;
+  const DELAY = 1000;
+  await delay(page === 0 ? FIRST_DELAY : DELAY);
+};
+
+export const getRandomNumber = (index = 0) =>
+  Math.round(Math.random() * 100) + index;
+
+/** */
+export const generateContents = (data: DefaultContentData): Content[] => {
+  return Array.from({ length: 999 }, (_, id) => ({
+    ...data,
+    id,
+  }));
+};
+
+/** */
+export const getPaginationInfo = ({
+  contents,
+  request,
+}: {
+  contents: Content[];
+  request: StrictRequest<DefaultBodyType>;
+}) => {
+  const url = new URL(request.url);
+  const size = Number(url.searchParams.get("size"));
+  const page = Number(url.searchParams.get("page"));
+  const totalCount = contents.length;
+  const totalPages = Math.round(totalCount / size);
+
+  return { page, size, totalCount, totalPages };
+};
