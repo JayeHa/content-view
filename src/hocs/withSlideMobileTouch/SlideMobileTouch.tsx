@@ -33,8 +33,12 @@ export const SlideMobileTouch = ({
           screenX > GLOBAL_MAX_WIDTH ? GLOBAL_MAX_WIDTH : screenX;
         const ratio = (distance / adjustedScreenWidth) * 100;
 
+        console.log(
+          `${isSwiping && ratio > thresholdPercentage ? `📱Swipe ${endX > startX ? "right" : "left"}!` : "❌ Not Swipe"} (${Math.round(ratio * 10) / 10} > ${thresholdPercentage})`
+        );
+
         if (isSwiping && ratio > thresholdPercentage) {
-          const direction = endX > startX ? "right" : "left"; // 스와이프 방향 결정
+          const direction = endX > startX ? "right" : "left";
 
           onSwipe(direction);
         }

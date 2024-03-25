@@ -33,6 +33,5 @@ export const ListLayout = withSlideMobileTouch(
         </div>
       </Section>
     );
-  },
-  40
+  }
 );
