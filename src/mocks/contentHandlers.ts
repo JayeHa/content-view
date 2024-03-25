@@ -1,7 +1,11 @@
 import { Content, PaginationResponse } from "@/models/contents";
+import { CHARGE } from "@/models/contents/charge";
 import { CHART } from "@/models/contents/chart";
+import { EVENT } from "@/models/contents/event";
+import { NEWS } from "@/models/contents/news";
+import { STORE } from "@/models/contents/store";
 import { WHOOK } from "@/models/contents/whook";
-import { HttpResponse, http } from "msw";
+import { DefaultBodyType, HttpResponse, StrictRequest, http } from "msw";
 import {
   applyDelay,
   generateContents,
@@ -10,72 +14,105 @@ import {
   getRandomNumber,
 } from "./utils";
 
+type Props<T = Content> = {
+  request: StrictRequest<DefaultBodyType>;
+  defaultData: T;
+  transformContent?: (content: T, index: number) => T;
+};
+
+async function handleContentEndpoint({
+  request,
+  defaultData,
+  transformContent = (content) => content,
+}: Props) {
+  const contents = generateContents(defaultData).map(transformContent);
+  const { page, size, totalCount, totalPages } = getPaginationInfo({
+    request,
+    contents,
+  });
+
+  await applyDelay(page);
+
+  return HttpResponse.json<PaginationResponse<Content>>(
+    {
+      contents: contents.slice(page * size, (page + 1) * size),
+      pageNumber: page,
+      pageSize: size,
+      totalCount,
+      totalPages,
+      isLastPage: totalPages <= page,
+      isFirstPage: page === 0,
+    },
+    { status: 200 }
+  );
+}
+
 export const contentHandlers = [
-  http.get("/chart", async ({ request }) => {
-    const offset = 5.24;
-    const isNewRankLikely = 0.2;
-
-    const contents = generateContents(CHART.DEFAULT_DATA).map(
-      (prev, index) => ({
-        ...prev,
-        amount: parseFloat((Number(prev.amount) - index * offset).toFixed(2)),
-        rank: {
-          current: index + 1,
-          prev:
-            Math.random() > isNewRankLikely
-              ? getRandomIndexAdjustment(index + 1)
-              : undefined,
-        },
-      })
-    );
-
-    const { page, size, totalCount, totalPages } = getPaginationInfo({
+  // 차트
+  http.get("/chart", async ({ request }) =>
+    handleContentEndpoint({
       request,
-      contents,
-    });
+      defaultData: CHART.DEFAULT_DATA,
+      transformContent: (prev, index) => {
+        // amount: 음원지수
+        const AMOUNT_OFFSET = 5.24;
+        const newAmount = Number(prev.amount) - index * AMOUNT_OFFSET;
+        const formattedAmount = newAmount.toFixed(2);
 
-    await applyDelay(page);
+        // rank: 순위
+        const NEW_RANK_LIKELY = 0.2;
+        const isNewRank = Math.random() > NEW_RANK_LIKELY;
 
-    return HttpResponse.json<PaginationResponse<Content>>(
-      {
-        contents: contents.slice(page * size, (page + 1) * size),
-        pageNumber: page,
-        pageSize: size,
-        totalCount,
-        totalPages,
-        isLastPage: totalPages <= page,
-        isFirstPage: page === 0,
+        const currentRank = index + 1;
+        const prevRank = !isNewRank
+          ? getRandomIndexAdjustment(currentRank)
+          : undefined;
+
+        return {
+          ...prev,
+          amount: formattedAmount,
+          rank: { current: currentRank, prev: prevRank },
+        };
       },
-      { status: 200 }
-    );
-  }),
-
-  http.get("/whook", async ({ request }) => {
-    const contents = generateContents(WHOOK.DEFAULT_DATA).map(
-      (prev, index) => ({
+    })
+  ),
+  // Whook
+  http.get("/whook", async ({ request }) =>
+    handleContentEndpoint({
+      request,
+      defaultData: WHOOK.DEFAULT_DATA,
+      transformContent: (prev, index) => ({
         ...prev,
         amount: getRandomNumber(index),
-      })
-    );
-
-    const { page, size, totalCount, totalPages } = getPaginationInfo({
+      }),
+    })
+  ),
+  // 이벤트
+  http.get("/event", async ({ request }) =>
+    handleContentEndpoint({
       request,
-      contents,
-    });
-
-    await applyDelay(page);
-
-    return HttpResponse.json<PaginationResponse<Content>>(
-      {
-        contents: contents.slice(page * size, (page + 1) * size),
-        pageNumber: page,
-        pageSize: size,
-        totalCount,
-        totalPages,
-        isLastPage: totalPages <= page,
-        isFirstPage: page === 0,
-      },
-      { status: 200 }
-    );
-  }),
+      defaultData: EVENT.DEFAULT_DATA,
+    })
+  ),
+  // 뉴스
+  http.get("/news", async ({ request }) =>
+    handleContentEndpoint({
+      request,
+      defaultData: NEWS.DEFAULT_DATA,
+    })
+  ),
+  // 스토어
+  http.get("/store", async ({ request }) =>
+    handleContentEndpoint({
+      request,
+      defaultData: STORE.DEFAULT_DATA,
+    })
+  ),
+  // 충전소
+  http.get("/charge", async ({ request }) =>
+    handleContentEndpoint({
+      request,
+      defaultData: CHARGE.DEFAULT_DATA,
+    })
+  ),
 ];
