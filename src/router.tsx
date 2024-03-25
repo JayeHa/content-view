@@ -43,12 +43,14 @@ interface Pages {
 
 const getRoutes = () => {
   const routes: IRoute[] = [];
-  const pages: Pages = import.meta.glob("./pages/**/index.tsx", {
+  const pages: Pages = import.meta.glob("./pages/**/index.page.tsx", {
     eager: true,
   });
 
+  console.log(pages);
+
   for (const path of Object.keys(pages)) {
-    const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
+    const fileName = path.match(/\.\/pages\/(.*)\.page.tsx$/)?.[1];
     if (!fileName) {
       continue;
     }
