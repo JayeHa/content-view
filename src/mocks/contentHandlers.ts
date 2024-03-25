@@ -1,4 +1,8 @@
-import { Content, PaginationResponse } from "@/models/contents";
+import {
+  CONTENT_ENDPOINTS,
+  Content,
+  PaginationResponse,
+} from "@/models/contents";
 import { CHARGE } from "@/models/contents/charge";
 import { CHART } from "@/models/contents/chart";
 import { EVENT } from "@/models/contents/event";
@@ -49,7 +53,7 @@ async function handleContentEndpoint({
 
 export const contentHandlers = [
   // 차트
-  http.get("/chart", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.chart, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: CHART.DEFAULT_DATA,
@@ -77,7 +81,7 @@ export const contentHandlers = [
     })
   ),
   // Whook
-  http.get("/whook", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.whook, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: WHOOK.DEFAULT_DATA,
@@ -88,28 +92,28 @@ export const contentHandlers = [
     })
   ),
   // 이벤트
-  http.get("/event", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.event, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: EVENT.DEFAULT_DATA,
     })
   ),
   // 뉴스
-  http.get("/news", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.news, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: NEWS.DEFAULT_DATA,
     })
   ),
   // 스토어
-  http.get("/store", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.store, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: STORE.DEFAULT_DATA,
     })
   ),
   // 충전소
-  http.get("/charge", async ({ request }) =>
+  http.get(CONTENT_ENDPOINTS.charge, async ({ request }) =>
     handleContentEndpoint({
       request,
       defaultData: CHARGE.DEFAULT_DATA,

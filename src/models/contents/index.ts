@@ -1,3 +1,12 @@
+export const CONTENT_ENDPOINTS = {
+  chart: "/chart",
+  whook: "/whook",
+  event: "/event",
+  news: "/news",
+  store: "/store",
+  charge: "/charge",
+};
+
 export type DefaultContentData = {
   title: string;
   subtitle?: string;
