@@ -7,10 +7,12 @@ type Props = {
   title: string;
   unit: string | undefined;
   children: ReactNode[] | undefined;
+  // TODO: 언디파인 풀기
+  isFetching?: boolean;
 };
 
 export const ListLayout = withSlideMobileTouch(
-  ({ title, unit, children }: Props) => {
+  ({ title, unit, children, isFetching }: Props) => {
     return (
       <Section>
         <div className="flex justify-between">
@@ -25,12 +27,14 @@ export const ListLayout = withSlideMobileTouch(
         </ol>
 
         {/* 스켈레톤 */}
-        <div className="mt-2">
-          <span className="sr-only">로딩중</span>
-          <ContentCard.Skeleton />
-          <ContentCard.Skeleton />
-          <ContentCard.Skeleton />
-        </div>
+        {isFetching && (
+          <div className="mt-2 hidden">
+            <span className="sr-only">로딩중</span>
+            <ContentCard.Skeleton />
+            <ContentCard.Skeleton />
+            <ContentCard.Skeleton />
+          </div>
+        )}
       </Section>
     );
   }
