@@ -22,7 +22,7 @@ export const ContentCard = ({
 
         <CardTitleGroup title={title} subtitle={subtitle} />
 
-        <div className="shrink-0 font-bold w-20">{amount}</div>
+        <div className="shrink-0 font-bold max-w-20">{amount}</div>
       </div>
     </article>
   );
