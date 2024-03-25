@@ -6,11 +6,13 @@ import { ReactNode } from "react";
 type Props = {
   title: string;
   unit: string | undefined;
-  children: ReactNode[];
+  children: ReactNode[] | undefined;
+  // TODO: 언디파인 풀기
+  isLoading?: boolean;
 };
 
 export const ListLayout = withSlideMobileTouch(
-  ({ title, unit, children }: Props) => {
+  ({ title, unit, children, isLoading }: Props) => {
     return (
       <Section>
         <div className="flex justify-between">
@@ -19,18 +21,20 @@ export const ListLayout = withSlideMobileTouch(
         </div>
 
         <ol className="flex flex-col gap-4">
-          {children.map((component, index) => (
+          {children?.map((component, index) => (
             <li key={index}>{component}</li>
           ))}
         </ol>
 
         {/* 스켈레톤 */}
-        <div className="mt-2">
-          <span className="sr-only">로딩중</span>
-          <ContentCard.Skeleton />
-          <ContentCard.Skeleton />
-          <ContentCard.Skeleton />
-        </div>
+        {isLoading && (
+          <div className="mt-2">
+            <span className="sr-only">로딩중</span>
+            <ContentCard.Skeleton />
+            <ContentCard.Skeleton />
+            <ContentCard.Skeleton />
+          </div>
+        )}
       </Section>
     );
   }

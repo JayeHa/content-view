@@ -1,11 +1,11 @@
-import { Content } from ".";
+import { DefaultContentData } from ".";
 
 export type Rank = {
   current: number;
   prev?: number | null;
 };
 
-export type ChartContent = Content & {
+export type ChartContent = DefaultContentData & {
   rank: Rank;
 };
 

@@ -1,6 +1,6 @@
-import { Content } from ".";
+import { DefaultContentData } from ".";
 
-const DEFAULT_DATA: Content = {
+const DEFAULT_DATA: DefaultContentData = {
   src: "/images/store.jpg",
   title: "With YOU-th: 미니앨범 13집",
   subtitle: "트와이스",
