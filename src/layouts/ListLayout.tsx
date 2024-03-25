@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 type Props = {
   title: string;
   unit: string | undefined;
-  children: ReactNode[];
+  children: ReactNode[] | undefined;
 };
 
 export const ListLayout = withSlideMobileTouch(
@@ -19,7 +19,7 @@ export const ListLayout = withSlideMobileTouch(
         </div>
 
         <ol className="flex flex-col gap-4">
-          {children.map((component, index) => (
+          {children?.map((component, index) => (
             <li key={index}>{component}</li>
           ))}
         </ol>

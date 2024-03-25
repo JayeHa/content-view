@@ -1,12 +1,18 @@
-import { WHOOK } from "@/models/contents/whook";
+import { useFetchWhookList } from "@/service/useContentService";
 import { ContentCard } from "@components/ContentCard";
 import { ListLayout } from "@layouts/ListLayout";
 
 export const WhookList = () => {
+  const { data, isLoading } = useFetchWhookList();
+
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <ListLayout title="채팅방 목록" unit="인원">
-      {Array.from({ length: 10 }, (_, i) => (
-        <ContentCard key={i} content={WHOOK.DEFAULT_DATA} />
+      {data?.contents?.map((content, index) => (
+        <ContentCard key={index} content={content} />
       ))}
     </ListLayout>
   );
