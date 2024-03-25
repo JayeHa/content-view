@@ -3,15 +3,13 @@ import { FC } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SlideMobileTouch, SlideMobileTouchProps } from "./SlideMobileTouch";
 
-const DEFAULT_THRESHOLD_PERCENTAGE = 60;
-
 type WithSlideMobileTouch = <P extends object>(
   Component: FC<P>,
   thresholdPercentage?: SlideMobileTouchProps["thresholdPercentage"]
 ) => FC<P>;
 
 export const withSlideMobileTouch: WithSlideMobileTouch =
-  (Component, thresholdPercentage = DEFAULT_THRESHOLD_PERCENTAGE) =>
+  (Component, thresholdPercentage = 50) =>
   (props) => {
     const navigate = useNavigate();
     const { pathname: currentPath } = useLocation();
