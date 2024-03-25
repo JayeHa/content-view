@@ -1,10 +1,9 @@
+import { Content, ContentType } from "@/models/contents";
+import { ChartContent } from "@/models/contents/chart";
 import {
-  Content,
-  ContentType,
   PaginationParams,
   PaginationResponse,
-} from "@/models/contents";
-import { ChartContent } from "@/models/contents/chart";
+} from "@/models/contents/pagination";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { ContentService } from "./contentService";
 

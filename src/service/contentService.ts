@@ -1,9 +1,6 @@
-import {
-  CONTENT_ENDPOINTS,
-  Content,
-  PaginationResponse,
-} from "@/models/contents";
+import { CONTENT_ENDPOINTS, Content } from "@/models/contents";
 import { ChartContent } from "@/models/contents/chart";
+import { PaginationResponse } from "@/models/contents/pagination";
 import axios from "axios";
 
 const axiosInstance = axios.create();

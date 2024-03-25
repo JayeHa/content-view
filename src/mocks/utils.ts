@@ -1,4 +1,4 @@
-import { Content, DefaultContentData } from "@/models/contents";
+import { Content, DefaultContent } from "@/models/contents";
 import { DefaultBodyType, StrictRequest } from "msw";
 
 export const delay = (ms: number) =>
@@ -19,7 +19,7 @@ export const getRandomIndexAdjustment = (currentIndex: number) => {
 };
 
 /** */
-export const generateContents = (data: DefaultContentData): Content[] => {
+export const generateContents = (data: DefaultContent): Content[] => {
   return Array.from({ length: 999 }, (_, id) => ({
     ...data,
     id,
