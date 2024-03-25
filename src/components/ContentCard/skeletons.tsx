@@ -1,4 +1,4 @@
-export const MusicCardSkeleton = () => {
+export const ContentCardSkeleton = () => {
   return (
     <div className="animate-pulse py-2">
       <article className="flex gap-3">

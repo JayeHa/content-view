@@ -1,4 +1,4 @@
-import { Rank } from ".";
+import { Rank } from "@/models/contents/chart";
 
 export const calcRankIcon = ({ current, prev }: Rank) => {
   const RANK_ICON_MAP = {

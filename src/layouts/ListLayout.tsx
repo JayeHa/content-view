@@ -1,5 +1,5 @@
 import { withSlideMobileTouch } from "@/hocs/withSlideMobileTouch";
-import { MusicCard } from "@components/Card";
+import { ContentCard } from "@components/ContentCard";
 import { Section } from "@components/Section";
 import { ReactNode } from "react";
 
@@ -27,9 +27,9 @@ export const ListLayout = withSlideMobileTouch(
         {/* 스켈레톤 */}
         <div className="mt-2">
           <span className="sr-only">로딩중</span>
-          <MusicCard.Skeleton />
-          <MusicCard.Skeleton />
-          <MusicCard.Skeleton />
+          <ContentCard.Skeleton />
+          <ContentCard.Skeleton />
+          <ContentCard.Skeleton />
         </div>
       </Section>
     );
