@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 export const StoreList = () => {
   const { data, hasNextPage, isFetching, fetchNextPage } = useFetchContentList({
-    contentType: "whook",
+    contentType: "store",
   });
 
   const contents = useMemo(
