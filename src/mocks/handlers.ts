@@ -29,6 +29,8 @@ const getPaginationInfo = ({
   return { page, size, totalCount, totalPages };
 };
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export const handlers = [
   http.get("/whook", async ({ request }) => {
     const getRandomNumber = (index = 0) =>
@@ -43,6 +45,10 @@ export const handlers = [
       request,
       contents,
     });
+
+    if (page === 0) {
+      await delay(2000);
+    }
 
     return HttpResponse.json<PaginationResponse<Content>>(
       {

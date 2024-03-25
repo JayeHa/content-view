@@ -13,8 +13,6 @@ export const WhookList = () => {
     [data]
   );
 
-  console.log(data);
-
   const loadMoreItems = useCallback(() => {
     console.log(hasNextPage, isFetching);
     if (hasNextPage && !isFetching) {
@@ -24,7 +22,7 @@ export const WhookList = () => {
 
   return (
     <>
-      <ListLayout title="채팅방 목록" unit="인원" isFetching={isFetching}>
+      <ListLayout title="채팅방 목록" unit="인원" isLoading={isFetching}>
         {contents.map((content, index) => (
           <ContentCard key={index} content={content} />
         ))}
