@@ -1,9 +1,9 @@
-import { ChartList } from "@/pages/chart/ChartList";
+import { WhookList } from "./WhookList";
 
 export default function WhookPage() {
   return (
     <div>
-      <ChartList />
+      <WhookList />
     </div>
   );
 }

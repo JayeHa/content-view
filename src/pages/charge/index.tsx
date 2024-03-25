@@ -1,9 +1,9 @@
-import { ChartList } from "@/pages/chart/ChartList";
+import { ChargeList } from "./ChargeList";
 
 export default function ChargePage() {
   return (
     <div>
-      <ChartList />
+      <ChargeList />
     </div>
   );
 }

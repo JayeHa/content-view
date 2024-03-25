@@ -1,9 +1,9 @@
-import { ChartList } from "@/pages/chart/ChartList";
+import { EventList } from "./EventList";
 
 export default function EventPage() {
   return (
     <div>
-      <ChartList />
+      <EventList />
     </div>
   );
 }

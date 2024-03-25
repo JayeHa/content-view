@@ -1,9 +1,9 @@
-import { ChartList } from "@/pages/chart/ChartList";
+import { StoreList } from "./StoreList";
 
 export default function StorePage() {
   return (
     <div>
-      <ChartList />
+      <StoreList />
     </div>
   );
 }

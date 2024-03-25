@@ -1,9 +1,9 @@
-import { ChartList } from "@/pages/chart/ChartList";
+import { NewsList } from "./NewsList";
 
 export default function NewsPage() {
   return (
     <div>
-      <ChartList />
+      <NewsList />
     </div>
   );
 }
