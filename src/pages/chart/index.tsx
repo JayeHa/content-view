@@ -1,6 +1,8 @@
 import { Banner, BannerType } from "@components/Banner";
 import { Carousel } from "@components/Carousel";
 import { Section } from "@components/Section";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { ChartList } from "./ChartList";
 
 // TODO: 데이터 이동
@@ -46,6 +48,16 @@ const BANNER_LIST: BannerType[] = [
 ];
 
 export default function ChartPage() {
+  const { data } = useQuery({
+    queryKey: ["test"],
+    queryFn: () => axios.get("/test"),
+  });
+
+  const contents = data?.data.contents;
+
+  const testData = contents && contents[0];
+  console.log(testData?.title);
+
   return (
     <>
       <Section noPaddingX>
@@ -56,6 +68,8 @@ export default function ChartPage() {
           ))}
         />
       </Section>
+
+      {testData?.title}
 
       <ChartList />
     </>
