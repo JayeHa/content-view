@@ -6,9 +6,8 @@ import { ReactNode } from "react";
 type Props = {
   title: string;
   unit: string | undefined;
+  isLoading: boolean;
   children: ReactNode[] | undefined;
-  // TODO: 언디파인 풀기
-  isLoading?: boolean;
 };
 
 export const ListLayout = withSlideMobileTouch(

@@ -1,13 +1,15 @@
-import { useFetchChartList } from "@/service/useContentService";
+import { ChartContent } from "@/models/contents/chart";
+import { useFetchContentList } from "@/service/useContentService";
 import { InfiniteScrollWrapper } from "@components/InfiniteScrollWrapper";
 import { ListLayout } from "@layouts/ListLayout";
 import { useMemo } from "react";
 import { ChartCard } from "./ChartCard";
 
 export const ChartList = () => {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchChartList({
-    size: 10,
-  });
+  const { data, hasNextPage, isFetching, fetchNextPage } =
+    useFetchContentList<ChartContent>({
+      contentType: "chart",
+    });
 
   const contents = useMemo(
     () => (data ? data.pages.flatMap(({ contents }) => contents) : []),

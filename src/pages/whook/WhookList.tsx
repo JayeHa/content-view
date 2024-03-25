@@ -1,12 +1,12 @@
-import { useFetchWhookList } from "@/service/useContentService";
+import { useFetchContentList } from "@/service/useContentService";
 import { ContentCard } from "@components/ContentCard";
 import { InfiniteScrollWrapper } from "@components/InfiniteScrollWrapper";
 import { ListLayout } from "@layouts/ListLayout";
 import { useMemo } from "react";
 
 export const WhookList = () => {
-  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchWhookList({
-    size: 10,
+  const { data, hasNextPage, isFetching, fetchNextPage } = useFetchContentList({
+    contentType: "whook",
   });
 
   const contents = useMemo(

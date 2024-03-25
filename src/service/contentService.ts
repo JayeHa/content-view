@@ -27,4 +27,36 @@ export const ContentService = {
 
     return response;
   },
+  // 이벤트
+  eventList: async (params: Prams) => {
+    const { data: response } = await axiosInstance.get<
+      PaginationResponse<Content>
+    >(CONTENT_ENDPOINTS.event, { params });
+
+    return response;
+  },
+  // 뉴스
+  newsList: async (params: Prams) => {
+    const { data: response } = await axiosInstance.get<
+      PaginationResponse<Content>
+    >(CONTENT_ENDPOINTS.news, { params });
+
+    return response;
+  },
+  // 스토어
+  storeList: async (params: Prams) => {
+    const { data: response } = await axiosInstance.get<
+      PaginationResponse<Content>
+    >(CONTENT_ENDPOINTS.store, { params });
+
+    return response;
+  },
+  // 충전소
+  chargeList: async (params: Prams) => {
+    const { data: response } = await axiosInstance.get<
+      PaginationResponse<Content>
+    >(CONTENT_ENDPOINTS.charge, { params });
+
+    return response;
+  },
 };

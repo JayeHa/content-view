@@ -1,6 +1,7 @@
 import {
   CONTENT_ENDPOINTS,
   Content,
+  DefaultContentData,
   PaginationResponse,
 } from "@/models/contents";
 import { CHARGE } from "@/models/contents/charge";
@@ -18,10 +19,10 @@ import {
   getRandomNumber,
 } from "./utils";
 
-type Props<T = Content> = {
+type Props<T = DefaultContentData, U = Content> = {
   request: StrictRequest<DefaultBodyType>;
   defaultData: T;
-  transformContent?: (content: T, index: number) => T;
+  transformContent?: (content: U, index: number) => U;
 };
 
 async function handleContentEndpoint({

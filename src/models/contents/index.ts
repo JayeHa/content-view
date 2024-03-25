@@ -1,4 +1,12 @@
-export const CONTENT_ENDPOINTS = {
+export type ContentType =
+  | "chart"
+  | "whook"
+  | "event"
+  | "news"
+  | "store"
+  | "charge";
+
+export const CONTENT_ENDPOINTS: Record<ContentType, string> = {
   chart: "/chart",
   whook: "/whook",
   event: "/event",
@@ -14,10 +22,10 @@ export type DefaultContentData = {
   amount?: number | string;
 };
 
-export type Content = DefaultContentData;
+// export type Content = DefaultContentData;
 
 // TODO: 주석 풀기
-// export type Content = DefaultContentData & { id: number };
+export type Content = DefaultContentData & { id: number };
 
 export type PaginationParams = {
   size: number;
