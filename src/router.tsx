@@ -47,8 +47,6 @@ const getRoutes = () => {
     eager: true,
   });
 
-  console.log(pages);
-
   for (const path of Object.keys(pages)) {
     const fileName = path.match(/\.\/pages\/(.*)\.page.tsx$/)?.[1];
     if (!fileName) {

@@ -1,25 +1,9 @@
+import { BannerType } from "@/models/banner";
 import { kstFormat } from "@/utils/date";
 import { Image } from "@components/Image";
 import { Link } from "react-router-dom";
 import { StatusBadge } from "./StatusBadge";
 import { getStatusOfDurationWithDday } from "./utils";
-
-export type Duration = {
-  start: string;
-  end: string;
-};
-
-export type BannerType = {
-  category: string;
-  title: string;
-  image: string;
-  bgColor?: string;
-  link?: {
-    url: string;
-    name?: string;
-  };
-  duration: Duration;
-};
 
 type Props = {
   data: BannerType;

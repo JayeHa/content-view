@@ -1,5 +1,5 @@
+import { Duration } from "@/models/banner";
 import { getDateDistance, kstFormat } from "@/utils/date";
-import { Duration } from ".";
 import { StatusBadgeProps } from "./StatusBadge";
 
 export function getStatusOfDurationWithDday(

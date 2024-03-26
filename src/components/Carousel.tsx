@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 
 type Props = {
-  items: ReactNode[];
+  items: ReactNode[] | undefined;
 };
 
 export const Carousel = ({ items }: Props) => {
@@ -31,7 +31,7 @@ export const Carousel = ({ items }: Props) => {
 
   return (
     <Slider {...settings}>
-      {items.map((item, index) => (
+      {items?.map((item, index) => (
         <div key={index} className="px-2 pb-5">
           {item}
         </div>
