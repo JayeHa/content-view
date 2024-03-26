@@ -1,3 +1,4 @@
+import { BANNER_LIST } from "@/mocks/banner/constants";
 import { useQuery } from "@tanstack/react-query";
 import { BannerService } from "./bannerService";
 
@@ -10,5 +11,6 @@ export const useFetchBannerList = () => {
   return useQuery({
     queryKey: bannerKeys.chart(),
     queryFn: BannerService.chart,
+    initialData: BANNER_LIST,
   });
 };

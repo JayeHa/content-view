@@ -1,3 +1,4 @@
+import { BANNER_LIST } from "@/mocks/banner/constants";
 import { useFetchBannerList } from "@/service/useBannerService";
 import { Banner } from "@components/Banner";
 import { Carousel } from "@components/Carousel";
@@ -5,7 +6,7 @@ import { Section } from "@components/Section";
 import { ChartList } from "./ChartList";
 
 export default function ChartPage() {
-  const { data: bannerList } = useFetchBannerList();
+  const { data: bannerList = BANNER_LIST } = useFetchBannerList();
 
   return (
     <>
