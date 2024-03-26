@@ -22,18 +22,22 @@ export const SlideMobileTouch = ({
   const [isSwiping, setIsSwiping] = useState(false);
   const [isSwipeValid, setIsSwipeValid] = useState(false);
 
+  // 스와이프 거리를 화면 너비에 대한 백분율로 변환하는 함수
+  const getSwipeRatio = useCallback((distance: number) => {
+    const screenWidth =
+      window.screen.width > GLOBAL_MAX_WIDTH
+        ? GLOBAL_MAX_WIDTH
+        : window.screen.width;
+    return (distance / screenWidth) * 100;
+  }, []);
+
   // 스와이프가 유효한지 판별하는 함수
   const calculateIsSwipeValid = useCallback(
     (distance: number) => {
-      const screenWidth =
-        window.screen.width > GLOBAL_MAX_WIDTH
-          ? GLOBAL_MAX_WIDTH
-          : window.screen.width;
-      const swipeRatio = (distance / screenWidth) * 100;
-
+      const swipeRatio = getSwipeRatio(distance);
       return swipeRatio > thresholdPercentage;
     },
-    [thresholdPercentage]
+    [getSwipeRatio, thresholdPercentage]
   );
 
   // 슬라이드 터치 종료에 대한 이벤트 처리
@@ -61,6 +65,24 @@ export const SlideMobileTouch = ({
     [calculateIsSwipeValid, currentX, onSwipe, startX]
   );
 
+  // 현재 스와이프 상태와 거리를 기반으로 translateX 스타일 값 계산
+  const getTransformStyle = () => {
+    const INITIAL_TRANSLATE_X = 0;
+    const MIN_SWIPE_RATIO = 10;
+
+    if (!isSwiping || startX === null) {
+      return `translateX(${INITIAL_TRANSLATE_X}px)`;
+    }
+
+    const distance = currentX - startX;
+    const swipeRatio = getSwipeRatio(distance);
+
+    const translateX =
+      Math.abs(swipeRatio) > MIN_SWIPE_RATIO ? distance : INITIAL_TRANSLATE_X;
+
+    return `translateX(${translateX}px)`;
+  };
+
   // 핸들러
   const handleTouchStart: TouchEventHandler = useCallback((event) => {
     const touchX = event.touches[0].clientX;
@@ -86,18 +108,13 @@ export const SlideMobileTouch = ({
     handleSwipeEnd(currentX);
   }, [handleSwipeEnd, currentX]);
 
-  const transformStyle =
-    isSwiping && isSwipeValid && startX !== null
-      ? `translateX(${currentX - startX}px)`
-      : "translateX(0px)";
-
   return (
     <div
       onTouchStart={(e) => handleTouchStart(e)}
       onTouchMove={(e) => handleTouchMove(e)}
       onTouchEnd={(e) => handleTouchEnd(e)}
       style={{
-        transform: transformStyle,
+        transform: getTransformStyle(),
         transition: isSwiping
           ? "opacity 0.3s ease-out"
           : "transform 1s ease-out",

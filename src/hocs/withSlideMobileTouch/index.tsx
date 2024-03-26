@@ -9,7 +9,7 @@ type WithSlideMobileTouch = <P extends object>(
 ) => FC<P>;
 
 export const withSlideMobileTouch: WithSlideMobileTouch =
-  (Component, thresholdPercentage = 50) =>
+  (Component, thresholdPercentage = 30) =>
   (props) => {
     const navigate = useNavigate();
     const { pathname: currentPath } = useLocation();
@@ -39,11 +39,13 @@ export const withSlideMobileTouch: WithSlideMobileTouch =
     };
 
     return (
-      <SlideMobileTouch
-        onSwipe={handleSwipeAction}
-        thresholdPercentage={thresholdPercentage}
-      >
-        <Component {...props} />
-      </SlideMobileTouch>
+      <div className="overflow-x-hidden">
+        <SlideMobileTouch
+          onSwipe={handleSwipeAction}
+          thresholdPercentage={thresholdPercentage}
+        >
+          <Component {...props} />
+        </SlideMobileTouch>
+      </div>
     );
   };
