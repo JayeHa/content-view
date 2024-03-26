@@ -1,4 +1,4 @@
-import { filteredPageRoutes } from "@/router";
+import { sortedPageRoutes } from "@/router";
 import { Link, useLocation } from "react-router-dom";
 
 export const GlobalHeader = () => {
@@ -22,7 +22,7 @@ export const GlobalHeader = () => {
       <div className="bg-white h-LNB_HEIGHT shadow-sm mt-[1px]">
         <nav className="h-full">
           <ol className="flex gap-3 items-center h-full overflow-x-scroll pl-6">
-            {filteredPageRoutes.map(({ path, pageName }) => (
+            {sortedPageRoutes.map(({ path, pageName }) => (
               <li key={path} className="flex-shrink-0">
                 <div
                   className={

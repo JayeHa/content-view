@@ -1,5 +1,5 @@
 import { useInitialScrollNavigate } from "@/hooks/useInitialScrollNavigate";
-import { filteredPageRoutes } from "@/router";
+import { sortedPageRoutes } from "@/router";
 import { FC } from "react";
 import { useLocation } from "react-router-dom";
 import { SlideMobileTouch, SlideMobileTouchProps } from "./SlideMobileTouch";
@@ -15,12 +15,12 @@ export const withSlideMobileTouch: WithSlideMobileTouch =
     const navigate = useInitialScrollNavigate();
     const { pathname: currentPath } = useLocation();
 
-    const currentIndex = filteredPageRoutes.findIndex(
+    const currentIndex = sortedPageRoutes.findIndex(
       ({ path }) => path === currentPath
     );
 
     const handleSwipeAction = (direction: "left" | "right") => {
-      const LAST_INDEX = filteredPageRoutes.length - 1;
+      const LAST_INDEX = sortedPageRoutes.length - 1;
       const FIRST_INDEX = 0;
 
       const prevIndex =
@@ -29,12 +29,12 @@ export const withSlideMobileTouch: WithSlideMobileTouch =
         currentIndex === LAST_INDEX ? FIRST_INDEX : currentIndex + 1;
 
       if (direction === "right") {
-        const prev = filteredPageRoutes[prevIndex];
+        const prev = sortedPageRoutes[prevIndex];
         navigate(prev?.path);
       }
 
       if (direction === "left") {
-        const next = filteredPageRoutes[nextIndex];
+        const next = sortedPageRoutes[nextIndex];
         navigate(next?.path);
       }
     };
