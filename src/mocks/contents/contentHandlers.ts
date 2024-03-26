@@ -1,13 +1,9 @@
-import {
-  CONTENT_ENDPOINTS,
-  Content,
-  DEFAULT_DATA,
-  DefaultContent,
-} from "@/models/contents";
+import { CONTENT_ENDPOINTS, Content, DefaultContent } from "@/models/contents";
 import { PaginationResponse } from "@/models/contents/pagination";
 import { DefaultBodyType, HttpResponse, StrictRequest, http } from "msw";
+import { applyDelay } from "../utils";
+import { DEFAULT_CONTENTS } from "./constants";
 import {
-  applyDelay,
   generateContents,
   getPaginationInfo,
   getRandomIndexAdjustment,
@@ -52,7 +48,7 @@ export const contentHandlers = [
   http.get(CONTENT_ENDPOINTS.chart, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.chart,
+      defaultData: DEFAULT_CONTENTS.chart,
       transformContent: (prev, index) => {
         // amount: 음원지수
         const AMOUNT_OFFSET = 5.24;
@@ -80,7 +76,7 @@ export const contentHandlers = [
   http.get(CONTENT_ENDPOINTS.whook, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.whook,
+      defaultData: DEFAULT_CONTENTS.whook,
       transformContent: (prev, index) => ({
         ...prev,
         amount: getRandomNumber(index),
@@ -91,28 +87,28 @@ export const contentHandlers = [
   http.get(CONTENT_ENDPOINTS.event, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.event,
+      defaultData: DEFAULT_CONTENTS.event,
     })
   ),
   // 뉴스
   http.get(CONTENT_ENDPOINTS.news, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.news,
+      defaultData: DEFAULT_CONTENTS.news,
     })
   ),
   // 스토어
   http.get(CONTENT_ENDPOINTS.store, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.store,
+      defaultData: DEFAULT_CONTENTS.store,
     })
   ),
   // 충전소
   http.get(CONTENT_ENDPOINTS.charge, async ({ request }) =>
     handleContentEndpoint({
       request,
-      defaultData: DEFAULT_DATA.charge,
+      defaultData: DEFAULT_CONTENTS.charge,
     })
   ),
 ];
