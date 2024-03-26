@@ -1,6 +1,7 @@
+import { useInitialScrollNavigate } from "@/hooks/useInitialScrollNavigate";
 import { filteredPageRoutes } from "@/router";
 import { FC } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { SlideMobileTouch, SlideMobileTouchProps } from "./SlideMobileTouch";
 
 type WithSlideMobileTouch = <P extends object>(
@@ -11,7 +12,7 @@ type WithSlideMobileTouch = <P extends object>(
 export const withSlideMobileTouch: WithSlideMobileTouch =
   (Component, thresholdPercentage = 30) =>
   (props) => {
-    const navigate = useNavigate();
+    const navigate = useInitialScrollNavigate();
     const { pathname: currentPath } = useLocation();
 
     const currentIndex = filteredPageRoutes.findIndex(
